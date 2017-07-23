@@ -1,0 +1,13 @@
+# <NAME>
+server {
+  listen 9888;
+  server_name <NAME>.localhost;
+  access_log <CWD>/logs/access-<NAME>.log;
+  root <PATH>;
+  location ~ \.php$ {
+    fastcgi_pass unix:<CWD>/sockets/php-<NAME>.sock;
+    fastcgi_index index.php;
+    fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+    include <CWD>/build-temp/nginx.git/conf/fastcgi_params;
+  }
+}

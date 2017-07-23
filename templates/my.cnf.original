@@ -1,0 +1,50 @@
+#
+# This group is read both both by the client and the server
+# use it for options that affect everything
+#
+[client-server]
+socket=<CWD>/sockets/mysql-dbug.sock
+#port=3307
+
+# This will be passed to all mysql clients
+#[client]
+#password=my_password
+
+# The MySQL server
+[mysqld]
+symbolic-links=1
+key_buffer_size=32M
+datadir=<CWD>/mysql-data/
+loose-innodb_file_per_table
+default_storage_engine=InnoDB
+log_error=<CWD>/logs/mysql-error.log
+general_log_file=<CWD>/logs/mysql.log
+general_log=1
+
+[mysqld_safe]
+open_files_limit=4096
+log_error=<CWD>/logs/mariadb-error.log
+
+[mariadb]
+datadir=<CWD>/mysql-data/
+default-storage-engine=aria
+loose-mutex-deadlock-detector
+max-connections=15
+
+[mariadb-5.5]
+socket=<CWD>/sockets/mysql-dbug.sock
+#port=3307
+
+[mariadb-10.1]
+socket=<CWD>/sockets/mysql2-dbug.sock
+
+[mysqldump]
+quick
+max_allowed_packet=16M
+
+[mysql]
+no-auto-rehash
+loose-abort-source-on-error
+
+# include all files from the config directory
+!includedir <CWD>/my.cnf.d

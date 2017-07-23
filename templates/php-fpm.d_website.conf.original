@@ -1,0 +1,17 @@
+[<NAME>]
+
+chdir = <PATH>
+
+listen.mode = 0666
+listen = <CWD>/sockets/php-<NAME>.sock
+;listen.owner =
+;listen.group =
+
+pm = ondemand
+pm.max_children = 10
+pm.start_servers = 1
+pm.min_spare_servers = 1
+pm.max_spare_servers = 5
+pm.process_idle_timeout = 60s
+pm.max_requests = 20
+
